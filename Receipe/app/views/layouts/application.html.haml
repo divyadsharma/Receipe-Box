@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Receipe
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    .container
+      - if notice
+        = content_tag :div, :class => "alert alert-info success_msg" do
+          %a.flash_alert{:href => "#", :style => "float:right;"} ×
+          = notice
+      - elsif alert
+        = content_tag :div, :class => "alert alert-danger error_msg" do
+          %a.flash_alert{:href => "#", :style => "float:right;"} ×
+          = alert
+      = yield

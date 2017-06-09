@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608093301) do
+ActiveRecord::Schema.define(version: 20170609130243) do
+
+  create_table "dishes", force: :cascade do |t|
+    t.string   "title",                          null: false
+    t.text     "description",                    null: false
+    t.text     "ingredients",                    null: false
+    t.text     "direction",                      null: false
+    t.integer  "prep_time"
+    t.integer  "cook_time"
+    t.integer  "serving_number"
+    t.string   "upload_image"
+    t.boolean  "public_receipe",  default: true
+    t.boolean  "private_receipe"
+    t.boolean  "terms",           default: true, null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_dishes_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,38 @@
+= form_for @dish do |f|
+  - if @dish.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@dish.errors.count, "error")} prohibited this dish from being saved:"
+      %ul
+        - @dish.errors.full_messages.each do |message|
+          %li= message
+
+  .actions
+    = f.submit 'Save'
+
+  %h3.text-center My Receipes
+  .control-group
+    %label.control-label Receipe Title
+    .controls
+      = f.text_area :title
+    %label.control-label Description
+    .controls
+      = f.text_area :description
+    %label.control-label Ingredients
+    .controls
+      = f.text_area :title
+    %label.control-label Receipe Title
+    .controls
+      = f.text_area :title
+  .control-group
+    %label.control-label=t(:display_option)
+    .controls
+      %label.radio.inline
+        = radio_button_tag 'course_configuration[display_content_type]', true, @course_configuration.display_content_type, class: 'bootstrap'
+        = t(:yes_label)
+      %label.radio.inline
+        = radio_button_tag 'course_configuration[display_content_type]', false, !@course_configuration.display_content_type, class: 'bootstrap'
+        = t(:no_label)
+  .control-group
+    .controls
+      = f.submit t(:save), class: 'btn btn-primary'
+      = link_to t(:cancel), chapters_admin_course_path(@course), class: 'btn btn-primary'

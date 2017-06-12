@@ -6,10 +6,9 @@
         - @dish.errors.full_messages.each do |message|
           %li= message
 
-  .actions
-    = f.submit 'Save'
-
-  %h3.text-center My Receipes
+  %h3 My Receipes
+  %br/
+  = f.hidden_field :user_id, value: current_user.id
   .control-group
     %label.control-label Receipe Title
     .controls
@@ -19,20 +18,41 @@
       = f.text_area :description
     %label.control-label Ingredients
     .controls
-      = f.text_area :title
-    %label.control-label Receipe Title
+      = f.text_area :ingredients
+    %label.control-label Directions
     .controls
-      = f.text_area :title
+      = f.text_area :direction
+    %label.control-label Prep Time
+    .controls
+      = f.text_field :prep_time
+    %label.control-label Cook Time
+    .controls
+      = f.text_field :cook_time
+    %label.control-label Serving Number
+    .controls
+      = f.text_field :serving_number
+    %label.control-label Upload Image
+    .controls
+      = f.file_field :upload_image
+    %label.control-label Public Receipe
+    .controls
+      = f.check_box :public_receipe, {}, @dish.public_receipe, true
+    %label.control-label Private Receipe
+    .controls
+      = f.check_box :private_receipe, {}, @dish.private_receipe, false
+    %label.control-label Do you agree with terms and conditions
+    .controls
+      = f.check_box :terms,{}, @dish.terms, true
+  / .control-group
+  /   %label.control-label=t(:display_option)
+  /   .controls
+  /     %label.radio.inline
+  /       = radio_button_tag 'course_configuration[display_content_type]', true, @course_configuration.display_content_type, class: 'bootstrap'
+  /       = t(:yes_label)
+  /     %label.radio.inline
+  /       = radio_button_tag 'course_configuration[display_content_type]', false, !@course_configuration.display_content_type, class: 'bootstrap'
+  /       = t(:no_label)
   .control-group
-    %label.control-label=t(:display_option)
     .controls
-      %label.radio.inline
-        = radio_button_tag 'course_configuration[display_content_type]', true, @course_configuration.display_content_type, class: 'bootstrap'
-        = t(:yes_label)
-      %label.radio.inline
-        = radio_button_tag 'course_configuration[display_content_type]', false, !@course_configuration.display_content_type, class: 'bootstrap'
-        = t(:no_label)
-  .control-group
-    .controls
-      = f.submit t(:save), class: 'btn btn-primary'
-      = link_to t(:cancel), chapters_admin_course_path(@course), class: 'btn btn-primary'
+      = f.submit 'Submit', class: 'btn btn-primary'
+      / = link_to t(:cancel), chapters_admin_course_path(@course), class: 'btn btn-primary'

@@ -1,25 +1,14 @@
 %h1 Receipes
+= link_to 'Post Receipe', new_dish_path, class: 'btn btn-default navbar-btn'
+.row
   - @dishes.each do |dish|
-    .span3
-      = link_to 'Show', dish
-      = link_to 'Edit', edit_dish_path(dish)
-      = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
+    .col-md-4
+      .thumbnail
+        = link_to dish_path(dish.id) do
+          = image_tag dish.upload_image, class: "img-rounded dishImage", style: 'width: 100%'
+          .caption
+            =dish.title
+      / = link_to 'Show', dish
+      / = link_to 'Edit', edit_dish_path(dish)
+      / = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
 
-
-/ %table
-/   %thead
-/     %tr
-/       %th
-/       %th
-/       %th
-
-/   %tbody
-/     - @dishes.each do |dish|
-/       %tr
-/         %td= link_to 'Show', dish
-/         %td= link_to 'Edit', edit_dish_path(dish)
-/         %td= link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
-
-/ %br
-
-/ = link_to 'New Dish', new_dish_path

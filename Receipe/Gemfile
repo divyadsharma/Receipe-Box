@@ -39,6 +39,7 @@ gem 'autoprefixer-rails'
 gem 'devise'
 gem "erb2haml", :group => :development
 gem "haml-rails"
+gem 'carrierwave'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

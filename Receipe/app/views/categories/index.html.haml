@@ -1,0 +1,52 @@
+%section.breadcrumbWrapper.userWrapper
+  .container
+    .row
+      .span12
+        %h4.showHeading.pull-left Categories
+        = link_to 'Add Category', new_category_path, class: 'btn btn-default navbar-btn navbar-right'
+
+%section
+  .container
+    .row
+      .span12
+        / = link_to "Back",admin_courses_path, class: "searchCreateBtn blueLink"
+        -if @categories.empty?
+          %ul.breadcrumb
+            %li.active No categories is added yet. To add a new category, please click on "Add Category" button
+        - else
+          %table.table.table-striped
+            %thead
+              %tr
+                %th S.No
+                %th Title
+                %th Action
+            %tbody
+              - i = 0
+              - @categories.each do |category|
+                - i += 1
+                %tr{class: "category#{category.id}"}
+                  %td= i
+                  %td{title: category.name}= truncate(category.name, length: 50)
+                  %td
+                    = link_to 'Edit', edit_category_path(category), class: 'btn btn-mini'
+                    = link_to 'Destroy', category, class: 'btn btn-danger btn-mini', :method => :delete, :data => { :confirm => 'Are you sure, you want to delete?' }
+
+
+/ %h1 categories
+
+/ %table
+/   %thead
+/     %tr
+/       %th Name
+/       %th Actions
+/   %tbody
+/     - @categories.each do |category|
+/       %tr
+/         %td= category.name
+/         %td= link_to 'Show', category
+/         %td= link_to 'Edit', edit_category_path(category)
+/         %td= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }
+
+/ %br
+
+/ = link_to 'New Category', new_category_path

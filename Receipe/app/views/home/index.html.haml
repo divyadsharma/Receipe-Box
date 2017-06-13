@@ -20,22 +20,25 @@
         %li
           %a{:href => "#"} About
         %li.dropdown
-          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-            Dropdown
+          %a.dropdown-toggle{"data-toggle" => "dropdown", :role => "button"}
+            Categories
             %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{:href => "#"} Action
-            %li
-              %a{:href => "#"} Another action
-            %li
-              %a{:href => "#"} Something else here
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} Separated link
-            %li.divider{:role => "separator"}
-            %li
-              %a{:href => "#"} One more separated link
+          %ul.dropdown-menu{role: 'menu'}
+            - Category.all.each do |category|
+              %li
+                = category.name
+            / %li
+            /   %a{:href => "#"} Action
+            / %li
+            /   %a{:href => "#"} Another action
+            / %li
+            /   %a{:href => "#"} Something else here
+            / %li.divider{:role => "separator"}
+            / %li
+            /   %a{:href => "#"} Separated link
+            / %li.divider{:role => "separator"}
+            / %li
+            /   %a{:href => "#"} One more separated link
         %li
           = link_to 'Personal Receipes', dishes_path
       %form.navbar-form.navbar-left
@@ -44,6 +47,22 @@
         %button.btn.btn-default{:type => "submit"} Submit
       .navbar-nav.navbar-right
         - if user_signed_in?
+          -#%i.fa.fa-user{"aria-hidden" => "true"}
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :role => "button"}
+              %i.fa.fa-user{"aria-hidden" => "true"}
+              %span.caret
+            %ul.dropdown-menu{role: 'menu'}
+              %li
+                My Receipes
+              %li
+                My Reviews
+              %li
+                My comments
+              %li
+                Profile
+              %li
+                Post Receipe
           = link_to 'Sign out', destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default navbar-btn'
         - else
           = link_to 'Sign in', new_user_session_path, class: 'btn btn-default navbar-btn'

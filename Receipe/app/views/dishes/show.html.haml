@@ -1,6 +1,30 @@
 %p#notice= notice
-
-
+%h1= @dish.title
+=image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
+%br/
+%br/
+%i.fa.fa-comment-o{"aria-hidden" => "true"}
+%i.fa.fa-heart-o{"aria-hidden" => "true"}
+%h3 Prep Time
+= @dish.prep_time
+%h3 Cook Time
+= @dish.cook_time
+#h3 Serving Number
+= @dish.serving_number
+%h2 Ingredients
+= @dish.ingredients
+%h2 Description
+= @dish.description
+%br/
 = link_to 'Edit', edit_dish_path(@dish)
 \|
 = link_to 'Back', dishes_path
+
+
+%h1= @dish.title
+.row
+  .col-md-4
+    =image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
+  .col-md-4
+
+  .col-md-4

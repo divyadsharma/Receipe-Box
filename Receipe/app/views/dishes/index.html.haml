@@ -1,5 +1,7 @@
-%h1 Receipes
-= link_to 'Post Receipe', new_dish_path, class: 'btn btn-default navbar-btn'
+%section.breadcrumbWrapper
+  %h4.showHeading.pull-left Receipes
+  = link_to 'Post Receipe', new_dish_path, class: 'btn btn-default pull-right'
+  .clearfix
 .row
   - @dishes.each do |dish|
     .col-md-4
@@ -7,7 +9,11 @@
         = link_to dish_path(dish.id) do
           = image_tag dish.upload_image, class: "img-rounded dishImage", style: 'width: 100%'
           .caption
-            =dish.title
+            = dish.title
+            %i.fa.fa-heart-o{"aria-hidden" => "true"}
+            %i.fa.fa-comment-o{"aria-hidden" => "true"}
+
+
       / = link_to 'Show', dish
       / = link_to 'Edit', edit_dish_path(dish)
       / = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }

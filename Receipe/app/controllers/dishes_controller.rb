@@ -70,6 +70,6 @@ class DishesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
       byebug
-      params.fetch(:dish, {}).permit(:title, :description, :ingredients, :direction, :prep_time, :cook_time, :serving_number, :upload_image, :public_receipe, :private_receipe, :terms, :user_id)
+      params.fetch(:dish, {}).permit(:title, :description, :ingredients, :direction, :prep_time, :cook_time, :serving_number, :upload_image, :public_receipe, :private_receipe, :terms, :user_id, category_ids: [])
     end
 end

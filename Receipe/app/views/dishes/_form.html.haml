@@ -13,6 +13,9 @@
     %label.control-label Receipe Title
     .controls
       = f.text_area :title
+    %label.control-label Category
+    .controls
+      = f.collection_select :category_ids, Category.all, :id, :name, {include_blank: t(:others)}, { multiple: true, class: 'categoryOption'}
     %label.control-label Description
     .controls
       = f.text_area :description

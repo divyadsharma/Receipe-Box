@@ -1,24 +1,24 @@
-%p#notice= notice
-%h1= @dish.title
-=image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
-%br/
-%br/
-%i.fa.fa-comment-o{"aria-hidden" => "true"}
-%i.fa.fa-heart-o{"aria-hidden" => "true"}
-%h3 Prep Time
-= @dish.prep_time
-%h3 Cook Time
-= @dish.cook_time
-#h3 Serving Number
-= @dish.serving_number
-%h2 Ingredients
-= @dish.ingredients
-%h2 Description
-= @dish.description
-%br/
-= link_to 'Edit', edit_dish_path(@dish)
-\|
-= link_to 'Back', dishes_path
+/ %p#notice= notice
+/ %h1= @dish.title
+/ =image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
+/ %br/
+/ %br/
+/ %i.fa.fa-comment-o{"aria-hidden" => "true"}
+/ %i.fa.fa-heart-o{"aria-hidden" => "true"}
+/ %h3 Prep Time
+/ = @dish.prep_time
+/ %h3 Cook Time
+/ = @dish.cook_time
+/ #h3 Serving Number
+/ = @dish.serving_number
+/ %h2 Ingredients
+/ = @dish.ingredients
+/ %h2 Description
+/ = @dish.description
+/ %br/
+/ = link_to 'Edit', edit_dish_path(@dish)
+/ \|
+/ = link_to 'Back', dishes_path
 
 
 %h1= @dish.title
@@ -26,5 +26,32 @@
   .col-md-4
     =image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
   .col-md-4
-
+    Reviews
+    %br/
+    %i.fa.fa-clock-o{"aria-hidden" => "true"}=@dish.created_at
+    %br/
+    %i.fa.fa-comment-o{"aria-hidden" => "true"}
+    %br/
+    %i.fa.fa-heart-o{"aria-hidden" => "true"}
   .col-md-4
+    = @dish.description
+%h3 Ingredients
+- byebug
+- i =0
+- j =0
+-@dish.ingredients.each do |ingredient|
+  - i+= 1
+  ="#{i}."
+  =ingredient.name
+  %br/
+%h3 Directions
+-@dish.directions.each do |direction|
+  - j+= 1
+  ="#{j}."
+  =direction.step
+  %br/
+%br/
+%br/
+= link_to 'Edit', edit_dish_path(@dish), class: 'btn btn-primary'
+\|
+= link_to 'Back', dishes_path, class: 'btn btn-primary'

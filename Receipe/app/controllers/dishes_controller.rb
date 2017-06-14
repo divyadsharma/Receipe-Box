@@ -24,6 +24,7 @@ class DishesController < ApplicationController
   # POST /dishes
   # POST /dishes.json
   def create
+    byebug
     @dish = Dish.new(dish_params)
 
     respond_to do |format|
@@ -70,6 +71,6 @@ class DishesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dish_params
       byebug
-      params.fetch(:dish, {}).permit(:title, :description, :ingredients, :direction, :prep_time, :cook_time, :serving_number, :upload_image, :public_receipe, :private_receipe, :terms, :user_id, category_ids: [])
+      params.fetch(:dish, {}).permit(:title, :description, :prep_time, :cook_time, :serving_number, :upload_image, :public_receipe, :private_receipe, :terms, :user_id, directions_attributes: [:id, :step, :dish_id, :_destroy], ingredients_attributes: [:id, :name, :dish_id, :_destroy], category_ids: [])
     end
 end

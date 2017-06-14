@@ -10,12 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613071435) do
+ActiveRecord::Schema.define(version: 20170613182420) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "directions", force: :cascade do |t|
+    t.text     "step"
+    t.integer  "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_directions_on_dish_id"
   end
 
   create_table "dish_categories", force: :cascade do |t|
@@ -30,8 +38,6 @@ ActiveRecord::Schema.define(version: 20170613071435) do
   create_table "dishes", force: :cascade do |t|
     t.string   "title",                          null: false
     t.text     "description",                    null: false
-    t.text     "ingredients",                    null: false
-    t.text     "direction",                      null: false
     t.integer  "prep_time"
     t.integer  "cook_time"
     t.integer  "serving_number"
@@ -43,6 +49,14 @@ ActiveRecord::Schema.define(version: 20170613071435) do
     t.datetime "updated_at",                     null: false
     t.integer  "user_id"
     t.index ["user_id"], name: "index_dishes_on_user_id"
+  end
+
+  create_table "ingredients", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "dish_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_ingredients_on_dish_id"
   end
 
   create_table "users", force: :cascade do |t|

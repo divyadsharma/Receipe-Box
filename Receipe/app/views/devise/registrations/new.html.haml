@@ -18,4 +18,5 @@
     = f.password_field :password_confirmation, autocomplete: "off"
   .actions
     = f.submit "Sign up"
+    = link_to 'Back', root_path, class: 'btn btn-default'
 = render "devise/shared/links"

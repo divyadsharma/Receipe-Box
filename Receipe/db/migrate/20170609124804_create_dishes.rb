@@ -3,8 +3,6 @@ class CreateDishes < ActiveRecord::Migration[5.0]
     create_table :dishes do |t|
       t.string :title, null: false
       t.text :description, null: false
-      t.text :ingredients, null: false
-      t.text :direction, null: false
       t.integer :prep_time
       t.integer :cook_time
       t.integer :serving_number

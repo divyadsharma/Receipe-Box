@@ -19,18 +19,21 @@
     %label.control-label Description
     .controls
       = f.text_area :description
-    %label.control-label Ingredients
-    #ingredients
-      = f.fields_for :ingredients do |ingredient|
-        = render 'ingredient_fields', f:  ingredient
-      .links
-        = link_to_add_association 'add ingredient', f, :ingredients, class: 'btn btn-default'
-    %label.control-label Directions
-    #directions
-      = f.fields_for :directions do |direction|
-        = render 'direction_fields', f:  direction
-      .links
-        = link_to_add_association 'add directions', f, :directions, class: 'btn btn-default'
+    .row
+      .col-md-6
+        %label.control-label Ingredients
+        #ingredients
+          = f.fields_for :ingredients do |ingredient|
+            = render 'ingredient_fields', f:  ingredient
+          .links
+            = link_to_add_association 'add ingredient', f, :ingredients, class: 'btn btn-default'
+      .col-md-6
+        %label.control-label Directions
+        #directions
+          = f.fields_for :directions do |direction|
+            = render 'direction_fields', f:  direction
+          .links
+            = link_to_add_association 'add directions', f, :directions, class: 'btn btn-default'
     %label.control-label Prep Time
     .controls
       = f.text_field :prep_time

@@ -23,9 +23,9 @@
 
 %h1= @dish.title
 .row
-  .col-md-4
+  .col-md-6
     =image_tag @dish.upload_image, class: "img-rounded dishImage", style: 'width: 50%'
-  .col-md-4
+  .col-md-6
     Reviews
     %br/
     %i.fa.fa-clock-o{"aria-hidden" => "true"}=@dish.created_at
@@ -33,25 +33,29 @@
     %i.fa.fa-comment-o{"aria-hidden" => "true"}
     %br/
     %i.fa.fa-heart-o{"aria-hidden" => "true"}
-  .col-md-4
-    = @dish.description
-%h3 Ingredients
-- byebug
-- i =0
-- j =0
--@dish.ingredients.each do |ingredient|
-  - i+= 1
-  ="#{i}."
-  =ingredient.name
-  %br/
-%h3 Directions
--@dish.directions.each do |direction|
-  - j+= 1
-  ="#{j}."
-  =direction.step
-  %br/
+    %br/
+    = @dish.categories.map(&:name).join(', ')
+%br/
+%br/
+= @dish.description
+.row
+  .col-md-6
+    %h3 Ingredients
+    - i =0
+    - j =0
+    -@dish.ingredients.each do |ingredient|
+      - i+= 1
+      ="#{i}."
+      =ingredient.name
+      %br/
+  .col-md-6
+    %h3 Directions
+    -@dish.directions.each do |direction|
+      - j+= 1
+      ="#{j}."
+      =direction.step
+      %br/
 %br/
 %br/
 = link_to 'Edit', edit_dish_path(@dish), class: 'btn btn-primary'
-\|
 = link_to 'Back', dishes_path, class: 'btn btn-primary'

@@ -1,9 +1,14 @@
 // Place all the styles related to the Dishes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+.thumbnail .dishImage
+{
+  min-height: 50px;
+  height: 200px;
+}
 .caption {
   background-color: #7ec4cc;
+  min-height: 180px;
 }
 .box{
   margin-bottom: 20px;
@@ -13,4 +18,12 @@
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
   margin-bottom: 30px;
+}
+
+body{
+  background: asset-url('receipe_back.jpg') no-repeat center/cover;
+}
+.separator
+{
+  border-right: 1px solid;
 }

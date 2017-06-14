@@ -2,19 +2,34 @@
   %h4.showHeading.pull-left Receipes
   = link_to 'Post Receipe', new_dish_path, class: 'btn btn-default pull-right'
   .clearfix
-.row
+/ .row
+/   - @dishes.each do |dish|
+/     .col-md-4
+/       .thumbnail
+/         = link_to dish_path(dish.id) do
+/           = image_tag dish.upload_image, class: "img-rounded dishImage", style: 'width: 100%'
+/           .caption
+/             = dish.title
+/             %i.fa.fa-heart-o{"aria-hidden" => "true"}
+/             %i.fa.fa-comment-o{"aria-hidden" => "true"}
+/             = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
+.row.dishContent
   - @dishes.each do |dish|
     .col-md-4
       .thumbnail
         = link_to dish_path(dish.id) do
-          = image_tag dish.upload_image, class: "img-rounded dishImage", style: 'width: 100%'
-          .caption
-            = dish.title
-            %i.fa.fa-heart-o{"aria-hidden" => "true"}
-            %i.fa.fa-comment-o{"aria-hidden" => "true"}
+          = image_tag dish.upload_image, class: "img-rounded dishImage ", style: 'width: 100%'
+        .caption.descrip
+          %h3=dish.title
+          %p
+            = (dish.description).truncate(145, omission: '... (continued)')
+          %p
+            = link_to 'Show', dish, class: 'btn btn-primary'
+            = link_to 'Edit', edit_dish_path(dish), class: 'btn btn-primary'
+            / %a.btn.btn-primary{:href => "#", :role => "button"} Button
+            / %a.btn.btn-default{:href => "#", :role => "button"} Button
 
 
       / = link_to 'Show', dish
       / = link_to 'Edit', edit_dish_path(dish)
-      / = link_to 'Destroy', dish, method: :delete, data: { confirm: 'Are you sure?' }
 
